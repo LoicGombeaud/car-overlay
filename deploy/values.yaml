@@ -1,0 +1,30 @@
+front:
+  replicaCount: 1
+  image:
+    repository: loicag/car-overlay-front
+    tag: latest
+    pullPolicy: Always
+
+back:
+  replicaCount: 1
+  image:
+    repository: loicag/car-overlay-back
+    tag: latest
+    pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  className: nginx
+  host: pdv-auto.loicgombeaud.com
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      gzip on;
+      gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;

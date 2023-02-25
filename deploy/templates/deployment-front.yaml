@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "car-overlay.fullname" . }}-front
+  labels:
+    {{- include "car-overlay.labels" . | nindent 4 }}
+    component: front
+  {{- with .Values.front.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.front.replicaCount }}
+  selector:
+  selector:
+    matchLabels:
+      {{- include "car-overlay.selectorLabels" . | nindent 6 }}
+      component: front
+  template:
+    metadata:
+      labels:
+        {{- include "car-overlay.selectorLabels" . | nindent 8 }}
+        component: front
+    spec:
+      containers:
+      - name: front
+        image: "{{ .Values.front.image.repository }}:{{ .Values.front.image.tag }}"
+        imagePullPolicy: {{ .Values.front.image.pullPolicy }}
+        ports:
+        - containerPort: 80

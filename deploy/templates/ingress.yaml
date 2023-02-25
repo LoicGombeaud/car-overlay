@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "car-overlay.fullname" . }}
+  labels:
+    {{- include "car-overlay.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "car-overlay.fullname" . }}-front
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - {{ .Values.ingress.host }}
+    secretName: car-overlay

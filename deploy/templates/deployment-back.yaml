@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "car-overlay.fullname" . }}-back
+  labels:
+    {{- include "car-overlay.labels" . | nindent 4 }}
+    component: back
+  {{- with .Values.back.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.back.replicaCount }}
+  selector:
+  selector:
+    matchLabels:
+      {{- include "car-overlay.selectorLabels" . | nindent 6 }}
+      component: back
+  template:
+    metadata:
+      labels:
+        {{- include "car-overlay.selectorLabels" . | nindent 8 }}
+        component: back
+    spec:
+      containers:
+      - name: back
+        image: "{{ .Values.back.image.repository }}:{{ .Values.back.image.tag }}"
+        imagePullPolicy: {{ .Values.back.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        env:
+        {{- with .Values.back.database }}
+        - name: DB_HOST
+          value: {{ .host }}
+        - name: DB_NAME
+          value: {{ .name }}
+        - name: DB_USER
+          value: {{ .user }}
+        - name: DB_PASSWORD
+          value: {{ .password }}
+        {{- end }}

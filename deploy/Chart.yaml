@@ -1,0 +1,5 @@
+apiVersion: v2
+name: car-overlay
+description: "Le point de vue de l'automobiliste"
+type: application
+version: 0.1.0
