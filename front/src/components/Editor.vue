@@ -1,7 +1,7 @@
 <script>
 import { saveAs } from "file-saver"
 
-const backUrl = "http://localhost:8080"
+const backUrl = "https://pdv-auto.loicgombeaud.com"
 
 export default {
   data() {
