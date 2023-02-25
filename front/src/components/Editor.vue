@@ -44,7 +44,7 @@ export default {
 <template>
   <form novalidate @submit.prevent="onSubmit">
     <div class="my-5">
-      <label for="formFileLg" class="form-label">1. Upload de la vidéo</label>
+      <label for="formFileLg" class="form-label">1. Upload de la vidéo (.mp4 uniquement, 50 Mo maximum)</label>
       <input
         class="form-control form-control-lg"
         id="formFileLg"
