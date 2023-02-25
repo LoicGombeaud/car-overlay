@@ -22,4 +22,7 @@
   <p>
     <a href="/editor">Accès à l'outil</a> (mot de passe requis)
   </p>
+  <p>
+    <a href="https://www.github.com/LoicGombeaud/car-overlay">Code source</a> sur GitHub
+  </p>
 </template>
