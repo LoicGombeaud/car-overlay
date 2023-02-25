@@ -7,8 +7,8 @@ import "./scss/styles.scss"
     <div class="row px-2">
       <div class="col-lg-3"></div>
       <div class="col-lg-6">
-        <div class="display-5">Le point de vue de l'automobiliste</div>
-        <div class="text-center my-3">
+        <div class="display-5 my-3">Le point de vue de l'automobiliste</div>
+        <div class="text-center mb-3">
           <img class="img-fluid text-center my-3" src="./assets/before-after.webp">
         </div>
         <p>
