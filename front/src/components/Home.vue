@@ -16,7 +16,7 @@
     <ol>
       <li>upload de la vidéo originale</li>
       <li>attente pendant le traitement (de quelques secondes à une minute)</li>
-      <li>téléchargmement de la vidéo modifiée</li>
+      <li>téléchargement de la vidéo modifiée</li>
     </ol>
   </p>
   <p>
