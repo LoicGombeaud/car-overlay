@@ -1,5 +1,8 @@
 <script>
+import { saveAs } from "file-saver"
+
 const backUrl = "http://localhost:8080"
+
 export default {
   data() {
     return {
@@ -11,19 +14,28 @@ export default {
     onChange(event) {
       this.file = event.target.files[0]
     },
-    onSubmit() {
-      //TODO better input validation
+    async onSubmit() {
+      //TODO better input validation?
       if (!this.file) {
         return
       }
+
       var submitButton = this.$refs.submit
+
+      this.showResult = false
       submitButton.disabled = true
       submitButton.innerHTML = "2. Traitement en cours..."
 
       var formData = new FormData()
-      formData.append("video", this.file)
-      console.log(formData)
-      fetch(`${backUrl}/upload`, { method: "POST", body: formData })
+      formData.append("file", this.file)
+      var res = await fetch(`${backUrl}/upload`, { method: "POST", body: formData })
+      var blob = await res.blob()
+      var filenameTrimmed = this.file.name.replace(/\.[^/.]+$/, "")
+      saveAs(blob, `${filenameTrimmed}-overlay.mp4`)
+
+      this.showResult = true
+      submitButton.disabled = false
+      submitButton.innerHTML = "2. Lancement du traitement"
     },
   },
 }
@@ -45,5 +57,5 @@ export default {
         <button type="submit" ref="submit" class="btn btn-primary mb-3">2. Lancement du traitement</button>
     </div>
   </form>
-  <p v-if="showResult">3. Traitement terminé, téléchargement en cours</p>
+  <p v-if="showResult">3. Traitement terminé ! Téléchargement en cours</p>
 </template>
