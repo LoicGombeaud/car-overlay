@@ -8,7 +8,9 @@ import "./scss/styles.scss"
       <div class="col-lg-3"></div>
       <div class="col-lg-6">
         <div class="display-5">Le point de vue de l'automobiliste</div>
-        <img class="img-fluid my-3" src="./assets/before-after.webp">
+        <div class="text-center my-3">
+          <img class="img-fluid text-center my-3" src="./assets/before-after.webp">
+        </div>
         <p>
           De plus en plus de personnes à vélo filment leurs trajets, afin de rendre compte des conséquences désagréables, voire dangereuses, de la cohabitation avec certains automobilistes.
         </p>
