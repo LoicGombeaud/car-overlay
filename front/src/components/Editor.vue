@@ -58,4 +58,5 @@ export default {
     </div>
   </form>
   <p v-if="showResult">3. Traitement terminé ! Téléchargement en cours</p>
+  <p>NB: les vidéos sont supprimées du serveur immédiatement après le traitement</p>
 </template>
