@@ -48,4 +48,4 @@ async def upload(file: UploadFile, background_tasks: BackgroundTasks):
     background_tasks.add_task(cleanup, [tmp_input, tmp_output])
 
     return FileResponse(path=tmp_output,
-                            media_type='application/octet-stream')
+                        media_type='application/octet-stream')
