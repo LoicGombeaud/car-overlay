@@ -9,7 +9,7 @@ trigger:
 jobs:
   - job: Hello_World
     pool:
-      vmImage: ubuntu-latest
+      name: basic
     steps:
     - script: echo Hello, world!
       displayName: 'Run a one-line script'
